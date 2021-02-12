@@ -1,0 +1,65 @@
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  <div class="navbar-brand-wrapper d-flex justify-content-center">
+    <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+      <a class="navbar-brand brand-logo">Fraym Resource</a>
+      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+        <span class="mdi mdi-sort-variant"></span>
+      </button>
+    </div>
+  </div>
+  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+    <ul class="navbar-nav mr-lg-4 w-100">
+      <li class="nav-item nav-search d-none d-lg-block w-100">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="search">
+              <i class="mdi mdi-magnify"></i>
+            </span>
+          </div>
+          
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-nav-right">
+      
+        <p-message severity="success" text="Online"  *ngIf="checkinterent" class="online"></p-message>  
+    <p-message severity="warn" text="Offline"  *ngIf="!checkinterent" class="offline"></p-message>  
+     
+      <button pButton pRipple type="button" icon="pi pi-info-circle" 
+      label="Help" class="p-button-rounded p-button-text" (click)="display=true"></button>
+    </ul>
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+      data-toggle="offcanvas">
+      
+    </button>
+  </div>
+</nav>
+<p-sidebar [(visible)]="display" styleClass="p-sidebar-sm p-sidebar-left"  [baseZIndex]="10000">
+  <h3>Quick Help</h3>
+  <p class="mt-10 bar-content">
+    This is a single page application that allows user to visualize the historical end
+of day stock prices for publicly available companies. The application was developed using Angular(11) with primeNg for presentation of data. You can perform below tasks
+  </p>
+  <ul class="navbar-nav navbar-nav-right">
+<li>
+  -- Filter record by date range
+</li>
+<li>
+  -- Search record by selected company(s)
+</li>
+<li>
+  -- Download report chart
+</li>
+  </ul>
+  
+    <h5 class=mt-2>Project Timeline</h5>
+    <p-timeline [value]="timeInfo">
+        <ng-template pTemplate="content" let-event>
+            <small class="p-text-secondary">{{event.date}}</small>
+        </ng-template>
+        <ng-template pTemplate="opposite" let-event>
+            {{event.status}}
+        </ng-template>
+    </p-timeline>
+
+</p-sidebar>

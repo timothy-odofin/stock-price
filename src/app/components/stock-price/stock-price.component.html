@@ -1,0 +1,104 @@
+<!-- <p-breadcrumb [model]="items"></p-breadcrumb> -->
+
+<p-menubar>
+    <ng-template pTemplate="start">
+        <div class="row ml-2">
+       <span class="mt-1 pr-10"> 
+           Report Filters
+       </span>
+        <div class="p-field">
+        <span class="p-float-label">
+        <p-calendar [(ngModel)]="dateFrom"  id="dateFrom" yearRange="1987:2030" 
+        [monthNavigator]="true" [yearNavigator]="true" [maxDate]="maxDate"></p-calendar>
+        <label for="dateFrom">Report From</label>
+    </span>
+</div>
+<div class="p-field ml-1">
+    <span class="p-float-label">
+        <p-calendar [(ngModel)]="dateTo"   [monthNavigator]="true" 
+        [yearNavigator]="true" yearRange="1987:2030" [maxDate]="maxDate"></p-calendar>
+        <label for="dateFrom">Report To</label>
+    </span>
+</div>
+<div class="ml-1">
+    <p-dropdown [options]="filterCategory" [(ngModel)]="selectedFilter" placeholder="Filter Category"></p-dropdown>
+
+</div>
+<div class="ml-1">
+    <p-multiSelect [options]="companyList" [(ngModel)]="selectedCompany" [virtualScroll]="true" itemSize="30"
+    defaultLabel="Select company"></p-multiSelect>
+</div>
+</div>
+        
+    </ng-template>
+    
+    <ng-template pTemplate="end">
+       
+
+        <span class="p-buttonset" *ngIf="loading==false">
+
+          <button pButton type="button" label="Search" icon="pi pi-search" styleClass="p-button-sm" (click)="searchReport()"></button>
+     
+        </span>
+            <p-progressSpinner  [style]="{width: '20px', height: '20px'}" 
+            styleClass="custom-spinner" strokeWidth="3" fill="#81D4FA" 
+            animationDuration=".5s" *ngIf="loading"></p-progressSpinner>
+      
+      
+     
+    </ng-template>
+    
+  </p-menubar>
+  <p-toast position="bottom-left"></p-toast>
+  <div class="container-fluid" class="mt-2">
+    <div id="chart" *ngIf="selectedFilter=='NM'">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [stroke]="chartOptions.stroke"
+          [tooltip]="chartOptions.tooltip"
+          [dataLabels]="chartOptions.dataLabels"
+          [legend]="chartOptions.legend"
+          [markers]="chartOptions.markers"
+          [grid]="chartOptions.grid"
+          [yaxis]="chartOptions.yaxis"
+          [title]="chartOptions.title"
+          [autoUpdateSeries]="true"
+        ></apx-chart>
+      </div>
+      
+      <div *ngIf="selectedFilter=='Range'">
+        <apx-chart
+        [series]="seriesOptions.series"
+        [chart]="seriesOptions.chart"
+        [dataLabels]="seriesOptions.dataLabels"
+        [markers]="seriesOptions.markers"
+        [title]="seriesOptions.title"
+        [fill]="seriesOptions.fill"
+        [yaxis]="seriesOptions.yaxis"
+        [xaxis]="seriesOptions.xaxis"
+        [tooltip]="seriesOptions.tooltip"
+        [autoUpdateSeries]="true"
+      ></apx-chart>
+      </div>
+
+      <div *ngIf="selectedFilter=='Area'" id="chartv">
+        <apx-chart
+          [series]="chartOptionsV.series"
+          [chart]="chartOptionsV.chart"
+          [xaxis]="chartOptionsV.xaxis"
+          [stroke]="chartOptionsV.stroke"
+          [tooltip]="chartOptionsV.tooltip"
+          [dataLabels]="chartOptionsV.dataLabels"
+          [fill]="chartOptionsV.fill"
+          [yaxis]="chartOptionsV.yaxis"
+          [title]="chartOptionsV.title"
+         
+        ></apx-chart>
+      </div>
+     
+    
+</div>
+  
+  

@@ -1,0 +1,28 @@
+.bar-content{
+    color: #65656a;
+    font-size: 13px;
+    font-weight: 500;
+}
+* {
+    box-sizing: border-box;
+}
+
+.online {
+    background: #C8E6C9;
+    border: solid #439446;
+    border-width: 0px;
+   
+    color: #224a23;
+    margin-top: 8px;
+    max-height: 6px;
+    
+}
+
+.offline{
+    background: #FFECB3;
+    border: solid #d9a300;
+    border-width: 0px;
+    margin-top: 8px;
+    max-height: 6px;
+    color: #6d5100;
+}
