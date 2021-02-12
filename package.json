@@ -1,13 +1,18 @@
 {
-  "name": "eazybank-primeng",
+  "name": "stock-price",
   "version": "0.0.0",
   "scripts": {
+    "heroku-postbuild": "ng build --prod",
     "ng": "ng",
-    "start": "ng serve --port 5050",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engines": {
+    "node": "15.8.0",
+    "npm": "7.5.2"
   },
   "private": true,
   "dependencies": {
@@ -22,8 +27,10 @@
     "@angular/router": "~10.1.6",
     "apexcharts": "^3.24.0",
     "chart.js": "^2.9.4",
+    "express": "^4.17.1",
     "ng-apexcharts": "^1.1.1",
     "ngx-daterange": "^1.0.29",
+    "path": "^0.12.7",
     "primeicons": "^4.0.0",
     "primeng": "^11.2.1",
     "rxjs": "~6.6.0",
@@ -32,8 +39,8 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.7",
-    "@angular/cli": "~10.1.7",
-    "@angular/compiler-cli": "~10.1.6",
+    "@angular/cli": "^11.2.0",
+    "@angular/compiler-cli": "^10.1.6",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
